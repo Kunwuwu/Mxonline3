@@ -31,8 +31,10 @@ class AdminDateWidget(forms.DateInput):
 
     def render(self, name, value, attrs=None):
         input_html = super(AdminDateWidget, self).render(name, value, attrs)
-        return mark_safe('<div class="input-group date bootstrap-datepicker"><span class="input-group-addon"><i class="fa fa-calendar"></i></span>%s'
-                         '<span class="input-group-btn"><button class="btn btn-default" type="button">%s</button></span></div>' % (input_html, _(u'Today')))
+        return mark_safe(
+            '<div class="input-group date bootstrap-datepicker"><span class="input-group-addon"><i class="fa fa-calendar"></i></span>%s'
+            '<span class="input-group-btn"><button class="btn btn-default" type="button">%s</button></span></div>' % (
+            input_html, _(u'Today')))
 
 
 class AdminTimeWidget(forms.TimeInput):

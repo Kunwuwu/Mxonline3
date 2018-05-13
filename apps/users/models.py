@@ -49,16 +49,18 @@ class  EmailVerifyRecord(models.Model):
     # 未设置blank=True，null = True, 默认不可为空
     code = models.CharField(max_length=20, verbose_name="验证码")
     email = models.EmailField(max_length=50, verbose_name="邮箱")
-    send_type = models.CharField(choices=SEND_CHOICES, max_length=10)
+    send_type = models.CharField(choices=SEND_CHOICES, max_length=10, verbose_name="验证码类型")
     # 这里的now得去掉()，不去掉会计算编译化时间，而不是实例化时间
-    send_time = models.DateTimeField(default=datetime.now)
+    send_time = models.DateTimeField(default=datetime.now, verbose_name="发送时间")
 
     class Meta:
         verbose_name = "邮箱验证码"
         verbose_name_plural = verbose_name
 
-# 轮播图
+    def __str__(self):
+        return '{0}({1})'.format(self.code, self.email)
 
+# 轮播图
 class Banner(models.Model):
     title = models.CharField(max_length=100, verbose_name="标题")
     image = models.ImageField(
@@ -74,3 +76,6 @@ class Banner(models.Model):
     class Meta:
         verbose_name = "轮播图"
         verbose_name_plural = verbose_name
+
+    def __str__(self):
+        return '{0}(位于第{1}位)'.format(self.title, self.index)

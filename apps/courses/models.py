@@ -31,6 +31,9 @@ class Course(models.Model):
     click_num = models.IntegerField(default=0, verbose_name="点击量")
     add_time = models.DateTimeField(default=datetime.now, verbose_name='添加时间')
 
+    def __str__(self):
+        return self.name
+
     class Meta:
         verbose_name = "课程"
         verbose_name_plural = verbose_name
@@ -43,6 +46,9 @@ class Lesson(models.Model):
     name = models.CharField(max_length=100, verbose_name="章节")
     add_time = models.DateTimeField(default=datetime.now, verbose_name="上传时间")
 
+    def __str__(self):
+        return '《{0}》课程的章节 >> {1}'.format(self.course, self.name)
+
     class Meta:
         verbose_name = "章节"
         verbose_name_plural = verbose_name
@@ -54,6 +60,9 @@ class Video(models.Model):
     lesson = models.ForeignKey(Lesson, verbose_name="章节", on_delete=models.CASCADE)
     name = models.CharField(max_length=100, verbose_name="视频名")
     add_time = models.DateTimeField(default=datetime.now, verbose_name="上传时间")
+
+    def __str__(self):
+        return '{0}章节的视频>>{1}'.format(self.lesson, self.name)
 
     class Meta:
         verbose_name = "视频"
@@ -73,3 +82,10 @@ class CourseResource(models.Model):
         max_length=1000 # 资源设置100长度不够吧
     )
     add_time = models.DateTimeField(default=datetime.now, verbose_name='上传时间')
+
+    class Meta:
+        verbose_name = u"课程资源"
+        verbose_name_plural = verbose_name
+
+    def __str__(self):
+        return '《{0}》课程的资源: {1}'.format(self.course, self.name)
