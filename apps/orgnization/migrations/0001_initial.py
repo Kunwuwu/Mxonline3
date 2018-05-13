@@ -37,7 +37,7 @@ class Migration(migrations.Migration):
                 ('image', models.ImageField(upload_to='org/%Y/%m', verbose_name='封面图')),
                 ('address', models.CharField(max_length=50, verbose_name='机构地址')),
                 ('add_time', models.DateTimeField(default=datetime.datetime.now, verbose_name='添加时间')),
-                ('city', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='apps.orgnization.CityDict', verbose_name='所在城市')),
+                ('city', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='orgnization.CityDict', verbose_name='所在城市')),
             ],
             options={
                 'verbose_name': '课程机构',
@@ -56,7 +56,7 @@ class Migration(migrations.Migration):
                 ('click_nums', models.IntegerField(default=0, verbose_name='点击数')),
                 ('fav_nums', models.IntegerField(default=0, verbose_name='收藏人数')),
                 ('add_time', models.DateTimeField(default=datetime.datetime.now, verbose_name='添加时间')),
-                ('org', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='apps.orgnization.CourseOrg', verbose_name='所属机构')),
+                ('org', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='orgnization.CourseOrg', verbose_name='所属机构')),
             ],
             options={
                 'verbose_name': '讲师',
