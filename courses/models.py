@@ -31,7 +31,6 @@ class Course(models.Model):
     click_num = models.IntegerField(default=0, verbose_name="点击量")
     add_time = models.DateTimeField(default=datetime.now, verbose_name='添加时间')
 
-
     class Meta:
         verbose_name = "课程"
         verbose_name_plural = verbose_name
