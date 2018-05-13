@@ -46,7 +46,7 @@ class Teacher(models.Model):
     # 一个机构可以有很多的老师，所以我们在讲师表添加外键并把课程机构名称保存下来
     # 可以使我们通过讲师找到对应的机构
     org = models.ForeignKey(CourseOrg, verbose_name="所属机构", on_delete=models.CASCADE)
-    name = models.CharField(max_length=50, verbose_name="教室名称")
+    name = models.CharField(max_length=50, verbose_name="教师名称")
     work_years = models.IntegerField(default=0, verbose_name="工作年限")
     work_company = models.CharField(max_length=50, verbose_name="就职公司")
     work_position =  models.CharField(max_length=50, verbose_name="公司职位")
