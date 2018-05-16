@@ -44,7 +44,7 @@ INSTALLED_APPS = [
     'users',
     'courses',
     'operation',
-    'orgnization',
+    'organization',
     'crispy_forms',
     'captcha',
 ]
