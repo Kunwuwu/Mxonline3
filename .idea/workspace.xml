@@ -3,21 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="799ce0a5-9bcd-4264-8fd6-0bde3c9d2439" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Mxonline3/settings.py" afterPath="$PROJECT_DIR$/Mxonline3/settings.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Mxonline3/urls.py" afterPath="$PROJECT_DIR$/Mxonline3/urls.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/apps/users/forms.py" afterPath="$PROJECT_DIR$/apps/users/forms.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/apps/users/views.py" afterPath="$PROJECT_DIR$/apps/users/views.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/apps/utils/email_send.py" afterPath="$PROJECT_DIR$/apps/utils/email_send.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/apps/orgnization/__init__.py" afterPath="$PROJECT_DIR$/apps/organization/__init__.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/apps/orgnization/admin.py" afterPath="$PROJECT_DIR$/apps/organization/admin.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/apps/orgnization/adminx.py" afterPath="$PROJECT_DIR$/apps/organization/adminx.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/apps/orgnization/apps.py" afterPath="$PROJECT_DIR$/apps/organization/apps.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/apps/orgnization/migrations/0001_initial.py" afterPath="$PROJECT_DIR$/apps/organization/migrations/0001_initial.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/apps/orgnization/migrations/0002_auto_20180516_1116.py" afterPath="$PROJECT_DIR$/apps/organization/migrations/0002_auto_20180516_1116.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/apps/orgnization/migrations/__init__.py" afterPath="$PROJECT_DIR$/apps/organization/migrations/__init__.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/apps/orgnization/models.py" afterPath="$PROJECT_DIR$/apps/organization/models.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/apps/orgnization/tests.py" afterPath="$PROJECT_DIR$/apps/organization/tests.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/apps/orgnization/views.py" afterPath="$PROJECT_DIR$/apps/organization/views.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -78,8 +63,8 @@
       <file leaf-file-name="login.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/templates/login.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="416">
-              <caret line="74" column="45" lean-forward="true" selection-start-line="74" selection-start-column="45" selection-end-line="74" selection-end-column="45" />
+            <state relative-caret-position="384">
+              <caret line="73" column="29" lean-forward="true" selection-start-line="73" selection-start-column="29" selection-end-line="73" selection-end-column="29" />
               <folding />
             </state>
           </provider>
@@ -446,7 +431,14 @@
       <option name="project" value="LOCAL" />
       <updated>1526455624675</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="算是收获最大的一次了，完成了注册，登录，重置密码等功能。">
+      <created>1526478570169</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1526478570169</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TodoView" selected-index="4">
@@ -460,14 +452,15 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-9" y="-9" width="1938" height="1048" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32915717" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.29384965" sideWeight="0.50214595" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.30068338" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32915717" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.29384965" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.29384965" sideWeight="0.49785408" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.5125285" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18830472" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18830472" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4783599" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -556,7 +549,8 @@
     <MESSAGE value="折腾了好久才折腾好，心累简直&#10;6-2&amp;3 完成了用户登录，登录验证自定义：邮箱用户名均可。错误信息返回前端。设置登录显示个人中心判断，注意不要把自定义方法写成login。" />
     <MESSAGE value="6-4 &amp; 5 登录换用类继承view实现,使用Django form进行表单验证并把错误信息提示到前台。" />
     <MESSAGE value="注册功能实现完毕，流程:注册，发邮件，激活，登录。对应6-6,7,8,9,10" />
-    <option name="LAST_COMMIT_MESSAGE" value="注册功能实现完毕，流程:注册，发邮件，激活，登录。对应6-6,7,8,9,10" />
+    <MESSAGE value="算是收获最大的一次了，完成了注册，登录，重置密码等功能。" />
+    <option name="LAST_COMMIT_MESSAGE" value="算是收获最大的一次了，完成了注册，登录，重置密码等功能。" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -952,8 +946,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/templates/login.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="416">
-          <caret line="74" column="45" lean-forward="true" selection-start-line="74" selection-start-column="45" selection-end-line="74" selection-end-column="45" />
+        <state relative-caret-position="384">
+          <caret line="73" column="29" lean-forward="true" selection-start-line="73" selection-start-column="29" selection-end-line="73" selection-end-column="29" />
           <folding />
         </state>
       </provider>
