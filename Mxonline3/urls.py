@@ -14,14 +14,21 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include, re_path
 import xadmin
 from django.views.generic import TemplateView
-from users.views import LoginView
+from users.views import LoginView, RegisterView, ActiveUserView
+
 
 urlpatterns = [
     path('xadmin/', xadmin.site.urls),
     path('', TemplateView.as_view(template_name="index.html"), name = "index"),
     # 基于类方法实现登录,这里是调用它的方法
-    path('login/', LoginView.as_view(), name="login")
+    path('login/', LoginView.as_view(), name="login"),
+    # 基于类方法实现登录,这里是调用它的方法
+    path('register/', RegisterView.as_view(), name="register"),
+    # 验证码url
+    path("captcha/", include('captcha.urls')),
+    # 激活用户url
+    re_path('active/(?P<active_code>.*)/', ActiveUserView.as_view(), name= "user_active")
 ]

@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'operation',
     'orgnization',
     'crispy_forms',
+    'captcha',
 ]
 
 # 此处重载是为了使我们的UserProfile生效
@@ -139,3 +140,12 @@ STATICFILES_DIRS = (
 )
 
 TEMPLATE_DIRS = (os.path.join(BASE_DIR,  'templates'),)
+
+# 发送邮件的setting配置 !!!QQ邮箱一直没成功，最后只能用企业邮箱了
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.exmail.qq.com'
+EMAIL_PORT = 465
+EMAIL_HOST_USER = '16155334@cumt.edu.cn'
+EMAIL_HOST_PASSWORD = 'Jiakun2333'
+EMAIL_USE_SSL = True
+EMAIL_FROM = '16155334@cumt.edu.cn'
