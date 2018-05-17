@@ -47,7 +47,14 @@ INSTALLED_APPS = [
     'organization',
     'crispy_forms',
     'captcha',
+    'pure_pagination',
 ]
+
+PAGINATION_SETTINGS = {
+    'PAGE_RANGE_DISPLAYED': 10,                 # 总共显示的页数
+    'MARGIN_PAGES_DISPLAYED': 2,                # 两边显示的页码
+    'SHOW_FIRST_PAGE_WHEN_INVALID': True,       # 页码错误时是否跳到第一页
+}                                               # 比如1 2...11 12 13 14 15 16 17 18 19 20...30 31
 
 # 此处重载是为了使我们的UserProfile生效
 AUTH_USER_MODEL = "users.UserProfile"
