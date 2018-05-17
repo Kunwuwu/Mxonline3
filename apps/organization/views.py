@@ -12,7 +12,6 @@ class OrgView(View):
         # 取出所有的城市
         all_citys = CityDict.objects.all()
 
-
         return render(request, "org-list.html", {
             "all_orgs": all_orgs,
             "all_citys": all_citys,
