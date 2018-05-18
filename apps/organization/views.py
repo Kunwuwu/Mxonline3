@@ -1,8 +1,10 @@
 from django.shortcuts import render
 from django.views.generic.base import View
 from pure_pagination import Paginator, EmptyPage, PageNotAnInteger
+from django.http import HttpResponse
 
 from .models import CourseOrg, CityDict, Teacher
+from .forms import UserAskForm
 # Create your views here.
 
 # 处理课程机构的view
@@ -53,4 +55,25 @@ class OrgView(View):
             "category": category,
             "hot_orgs": hot_orgs,
         })
+
+
+# 添加我要学习
+class AddUserAskView(View):
+    # 处理表单提交当然post
+    def post(self, request):
+        userask_form = UserAskForm(request.POST)
+        # 判断该form是否有效
+        if userask_form.is_valid():
+            # 注意这里model和form的区别
+            # 它有model的属性
+            # 当commit=true时进行真正保存
+            user_ask = userask_form.save(commit=True)
+            # 这样就不需要把一个一个字段取出来然后存到model的对象中之后save
+
+            # 如果保存成功，返回json字段，后面content_type是告诉浏览器的
+            return HttpResponse("{'status': 'success'}", content_type='application/json')
+        else:
+            # 如果保存失败，返回json字符串，并将forms的信息通过msg传送的前端
+            return HttpResponse("{'status': 'success', 'msg':{0}}".format(userask_form.erros))
+
 
