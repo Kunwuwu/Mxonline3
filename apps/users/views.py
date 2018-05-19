@@ -3,12 +3,12 @@ import json
 
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse
+from pure_pagination import Paginator, EmptyPage, PageNotAnInteger
 from django.http import HttpResponseRedirect, HttpResponse
 from django.shortcuts import render
 # Django自带的用户验证,login
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.backends import ModelBackend
-from pure_pagination import Paginator, EmptyPage, PageNotAnInteger
 
 from courses.models import Course
 from operation.models import UserCourse, UserFavorite, UserMessage
@@ -19,7 +19,7 @@ from django.db.models import Q
 # 基于类实现需要继承的view
 from django.views.generic.base import View
 # form表单验证 & 验证码
-from .forms import LoginForm, RegisterForm, ActiveForm, ForgetForm, ModifyPwdForm, UserInfoForm, UploadImageForm
+from .forms import LoginForm, RegisterForm, ActiveForm, ForgetForm, ModifyPwdForm, UploadImageForm, UserInfoForm
 # 进行密码加密
 from django.contrib.auth.hashers import make_password
 # 发送邮件
@@ -42,7 +42,7 @@ class ActiveUserView(View):
                 user.is_active = True
                 user.save()
                 # 激活成功跳转到登录页面
-                return render(request, "login.html", {"msg":'已成功激活'})
+                return render(request, "login.html", )
         # 自己瞎输的验证码
         else:
             return render(
@@ -66,9 +66,8 @@ class RegisterView(View):
         if register_form.is_valid():
             # 这里注册时前端的name为email
             user_name = request.POST.get("email", "")
-            # 用户查重，这里也要对用户名查重吧
-            tuser = UserProfile.objects.filter(email=user_name)
-            if tuser:
+            # 用户查重
+            if UserProfile.objects.filter(email=user_name):
                 return render(
                     request, "register.html", {
                         "register_form": register_form, "msg": "用户已存在"})
@@ -89,31 +88,25 @@ class RegisterView(View):
             # 写入欢迎注册消息
             user_message = UserMessage()
             user_message.user = user_profile.id
-            user_message.message = "欢迎注册jiakun2333慕课小站!! --系统自动消息"
-
+            user_message.message = "欢迎注册mtianyan慕课小站!! --系统自动消息"
             user_message.save()
             # 发送注册激活邮件
             send_register_email(user_name, "register")
 
             # 跳转到登录页面
-            return render(request, "login.html", {"msg": "请确认已经激活"})
+            return render(request, "login.html", )
         # 注册邮箱form验证失败
         else:
             return render(
                 request, "register.html", {
                     "register_form": register_form})
 
-class LogoutView(View):
-    def get(self, request):
-        # django自带的logout
-        logout(request)
-        # 重定向到首页,
-        return HttpResponseRedirect(reverse("index"))
+
+# 实现用户名邮箱均可登录
+# 继承ModelBackend类，因为它有方法authenticate，可点进源码查看
 
 
-class LoginView(View, ModelBackend):
-    # 我明明记得Python没有函数重载，一直觉得很郁闷，结果终于出问题了，密码一直不对！！！
-    # 作者上次重载的操作不对，这才是正确的重载
+class CustomBackend(ModelBackend):
     def authenticate(self, username=None, password=None, **kwargs):
         try:
             # 不希望用户存在两个，get只能有一个。两个是get失败的一种原因 Q为使用并集查询
@@ -127,6 +120,15 @@ class LoginView(View, ModelBackend):
         except Exception as e:
             return None
 
+class LogoutView(View):
+    def get(self, request):
+        # django自带的logout
+        logout(request)
+        # 重定向到首页,
+        return HttpResponseRedirect(reverse("index"))
+
+
+class LoginView(View):
     # 直接调用get方法免去判断
     def get(self, request):
         # render就是渲染html返回用户
@@ -148,7 +150,7 @@ class LoginView(View, ModelBackend):
             pass_word = request.POST.get("password", "")
 
             # 成功返回user对象,失败返回null
-            user = self.authenticate(username=user_name, password=pass_word)
+            user = authenticate(username=user_name, password=pass_word)
 
             # 如果不是null说明验证成功
             if user is not None:
@@ -266,12 +268,12 @@ class ResetView(View):
 
 class ModifyPwdView(View):
     def post(self, request):
-        modifypwd_form = ModifyPwdForm(request.POST)
-        if modifypwd_form.is_valid():
+        modiypwd_form = ModifyPwdForm(request.POST)
+        if modiypwd_form.is_valid():
             pwd1 = request.POST.get("password1", "")
             pwd2 = request.POST.get("password2", "")
             active_code = request.POST.get("active_code", "")
-            email = request.POST.get("email", "")
+            # email = request.POST.get("email", "")
             # 如果两次密码不相等，返回错误信息
             if pwd1 != pwd2:
                 return render(
@@ -293,12 +295,60 @@ class ModifyPwdView(View):
             email = request.POST.get("email", "")
             return render(
                 request, "password_reset.html", {
-                    "email": email, "modifypwd_form": modifypwd_form})
+                    "email": email, "modiypwd_form": modiypwd_form})
 
 
+class UserInfoView(LoginRequiredMixin, View):
+    login_url = '/login/'
+    redirect_field_name = 'next'
 
+    def get(self, request):
+        return render(request, "usercenter-info.html", {
+
+        })
+
+    def post(self, request):
+        # 不像用户咨询是一个新的。需要指明instance。不然无法修改，而是新增用户
+        user_info_form = UserInfoForm(request.POST, instance=request.user)
+        if user_info_form.is_valid():
+            user_info_form.save()
+            return HttpResponse(
+                '{"status":"success"}',
+                content_type='application/json')
+        else:
+            # 通过json的dumps方法把字典转换为json字符串
+            return HttpResponse(
+                json.dumps(
+                    user_info_form.errors),
+                content_type='application/json')
+# 用户上传图片的view:用于修改头像
+
+
+class UploadImageView(LoginRequiredMixin, View):
+    login_url = '/login/'
+    redirect_field_name = 'next'
+
+    def post(self, request):
+        # 这时候用户上传的文件就已经被保存到imageform了 ，为modelform添加instance值直接保存
+        image_form = UploadImageForm(
+            request.POST, request.FILES, instance=request.user)
+        if image_form.is_valid():
+            image_form.save()
+            # # 取出cleaned data中的值,一个dict
+            # image = image_form.cleaned_data['image']
+            # request.user.image = image
+            # request.user.save()
+            return HttpResponse(
+                '{"status":"success"}',
+                content_type='application/json')
+        else:
+            return HttpResponse(
+                '{"status":"fail"}',
+                content_type='application/json')
 
 # 在个人中心修改用户密码
+
+
 class UpdatePwdView(LoginRequiredMixin, View):
     login_url = '/login/'
     redirect_field_name = 'next'
@@ -346,30 +396,6 @@ class SendEmailCodeView(LoginRequiredMixin, View):
         return HttpResponse(
             '{"status":"success"}',
             content_type='application/json')
-
-class UserInfoView(LoginRequiredMixin, View):
-    login_url = '/login/'
-    redirect_field_name = 'next'
-
-    def get(self, request):
-        return render(request, "usercenter-info.html", {
-
-        })
-
-    def post(self, request):
-        # 不像用户咨询是一个新的。需要指明instance。不然无法修改，而是新增用户
-        user_info_form = UserInfoForm(request.POST, instance=request.user)
-        if user_info_form.is_valid():
-            user_info_form.save()
-            return HttpResponse(
-                '{"status":"success"}',
-                content_type='application/json')
-        else:
-            # 通过json的dumps方法把字典转换为json字符串
-            return HttpResponse(
-                json.dumps(
-                    user_info_form.errors),
-                content_type='application/json')
 
 
 # 修改邮箱的view:
@@ -467,47 +493,6 @@ class MyFavCourseView(LoginRequiredMixin, View):
             "course_list": course_list,
         })
 
-
-## 首页view
-class IndexView(View):
-    def get(self,request):
-        # 取出轮播图
-        all_banner = Banner.objects.all().order_by('index')[:5]
-        # 正常位课程
-        courses = Course.objects.filter(is_banner=False)[:6]
-        # 轮播图课程取三个
-        banner_courses = Course.objects.filter(is_banner=True)[:3]
-        # 课程机构
-        course_orgs = CourseOrg.objects.all()[:15]
-        return render(request, 'index.html', {
-            "all_banner":all_banner,
-            "courses":courses,
-            "banner_courses":banner_courses,
-            "course_orgs":course_orgs,
-        })
-
-class UploadImageView(LoginRequiredMixin, View):
-    login_url = '/login/'
-    redirect_field_name = 'next'
-
-    def post(self, request):
-        # 这时候用户上传的文件就已经被保存到imageform了 ，为modelform添加instance值直接保存
-        image_form = UploadImageForm(
-            request.POST, request.FILES, instance=request.user)
-        if image_form.is_valid():
-            image_form.save()
-            # # 取出cleaned data中的值,一个dict
-            # image = image_form.cleaned_data['image']
-            # request.user.image = image
-            # request.user.save()
-            return HttpResponse(
-                '{"status":"success"}',
-                content_type='application/json')
-        else:
-            return HttpResponse(
-                '{"status":"fail"}',
-                content_type='application/json')
-
 # 我的消息
 class MyMessageView(LoginRequiredMixin, View):
     login_url = '/login/'
@@ -533,4 +518,22 @@ class MyMessageView(LoginRequiredMixin, View):
         messages = p.page(page)
         return  render(request, "usercenter-message.html", {
         "messages":messages,
+        })
+
+## 首页view
+class IndexView(View):
+    def get(self,request):
+        # 取出轮播图
+        all_banner = Banner.objects.all().order_by('index')[:5]
+        # 正常位课程
+        courses = Course.objects.filter(is_banner=False)[:6]
+        # 轮播图课程取三个
+        banner_courses = Course.objects.filter(is_banner=True)[:3]
+        # 课程机构
+        course_orgs = CourseOrg.objects.all()[:15]
+        return render(request, 'index.html', {
+            "all_banner":all_banner,
+            "courses":courses,
+            "banner_courses":banner_courses,
+            "course_orgs":course_orgs,
         })
