@@ -1,7 +1,7 @@
 from django.db import models
 
 from datetime import datetime
-
+from organization.models import CourseOrg
 # Create your models here.
 
 # 课程信息表
@@ -29,7 +29,11 @@ class Course(models.Model):
     )
     # 保存点击量，点击页面就算
     click_num = models.IntegerField(default=0, verbose_name="点击量")
+    tag = models.CharField(max_length=15, verbose_name=u"课程标签", default=u"")
     add_time = models.DateTimeField(default=datetime.now, verbose_name='添加时间')
+
+    # 添加课程对应的机构外键
+    course_org = models.ForeignKey(CourseOrg, verbose_name="所属机构", on_delete=models.CASCADE, null=True, blank = True)
 
     def __str__(self):
         return self.name

@@ -18,7 +18,7 @@ from django.urls import path, include, re_path
 import xadmin
 from django.views.generic import TemplateView
 from django.views.static import serve
-from users.views import LoginView, RegisterView, ActiveUserView, ForgetPwdView, ResetView, ModifyPwdView
+from users.views import LoginView, RegisterView, ActiveUserView, ForgetPwdView, ResetView, ModifyPwdView, LogoutView
 from organization.views import OrgView
 from .settings import MEDIA_ROOT
 import organization
@@ -29,6 +29,8 @@ urlpatterns = [
     path('', TemplateView.as_view(template_name="index.html"), name = "index"),
     # 基于类方法实现登录,这里是调用它的方法
     path('login/', LoginView.as_view(), name="login"),
+    # 退出功能url
+    path('logout/', LogoutView.as_view(), name="logout"),
     # 基于类方法实现登录,这里是调用它的方法
     path('register/', RegisterView.as_view(), name="register"),
     # 验证码url
@@ -46,5 +48,8 @@ urlpatterns = [
     # 处理图片显示的url,使用Django自带serve,传入参数告诉它去哪个路径找，我们有配置好的路径MEDIAROOT
     re_path(r'^media/(?P<path>.*)', serve, {"document_root": MEDIA_ROOT }),
     # 课程机构app的url配置
-    path("org/", include('organization.urls', namespace="org"))
+    path("org/", include('organization.urls', namespace="org")),
+    path("users/", include('users.urls', namespace="users")),
+    # 课程app的url配置
+    path("course/", include('courses.urls', namespace="course")),
 ]

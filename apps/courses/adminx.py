@@ -7,7 +7,7 @@ from .models import *     # 直接全部import了
 import xadmin
 
 class CourseAdmin(object):
-    list_display = ['name', 'desc', 'detail', 'degree', 'learn_time', 'students']
+    list_display = ['name', 'desc', 'course_org', 'degree', 'learn_time', 'students']
     search_fields = ['name', 'desc', 'detail', 'degree', 'students']
     list_filter = ['name', 'desc', 'detail', 'degree', 'learn_time', 'students']
 
