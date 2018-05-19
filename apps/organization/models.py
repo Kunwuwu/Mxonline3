@@ -52,7 +52,7 @@ class CourseOrg(models.Model):
         verbose_name_plural = verbose_name
 
     def __str__(self):
-        return "课程机构: {0}".format(self.name)
+        return "{0}".format(self.name)
 
 # 讲师
 class Teacher(models.Model):

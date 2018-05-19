@@ -30,10 +30,19 @@ class Course(models.Model):
     # 保存点击量，点击页面就算
     click_num = models.IntegerField(default=0, verbose_name="点击量")
     tag = models.CharField(max_length=15, verbose_name=u"课程标签", default=u"")
+
     add_time = models.DateTimeField(default=datetime.now, verbose_name='添加时间')
+    category = models.CharField(max_length=100, null=True, blank=True,verbose_name="课程类别")
 
     # 添加课程对应的机构外键
     course_org = models.ForeignKey(CourseOrg, verbose_name="所属机构", on_delete=models.CASCADE, null=True, blank = True)
+
+    # 获取章节数和学习的用户，可以通过被置为外键的情况来计算
+    def get_zj_nums(self):
+        return self.lesson_set.all().count()
+
+    def get_learn_user(self):
+        return self.usercourse_set.all()[:5]
 
     def __str__(self):
         return self.name

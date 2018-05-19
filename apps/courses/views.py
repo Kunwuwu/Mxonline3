@@ -11,6 +11,7 @@ from operation.models import UserFavorite, CourseComments, UserCourse
 
 class CourseListView(View):
     def get(self, request):
+        # 获取所有的课程
         all_course = Course.objects.all()
         # 热门课程推荐
         hot_courses = Course.objects.all().order_by("-students")[:3]
@@ -30,19 +31,21 @@ class CourseListView(View):
             if sort == "students":
                 all_course = all_course.order_by("-students")
             elif sort == "hot":
-                all_course = all_course.order_by("-click_nums")
+                all_course = all_course.order_by("-click_num")
+        else:
+            all_course = all_course.order_by("-add_time")
         try:
             page = request.GET.get('page', 1)
         except PageNotAnInteger:
             page = 1
-        # 这里指从allorg中取五个出来，每页显示5个
+        # 这里指从all_course中取五个出来，每页显示5个
         p = Paginator(all_course, 6, request=request)
         courses = p.page(page)
-        return render(request, "course-list.html", {
+        return render(request, 'course-list.html', {
             "all_course": courses,
-            "sort": sort,
             "hot_courses": hot_courses,
-            "search_keywords": search_keywords
+            "sort": sort,
+            "search_keywords": search_keywords,
         })
 
 
@@ -69,7 +72,6 @@ class CourseDetailView(View):
         # 取出标签找到标签相同的course
         tag = course.tag
         if tag:
-            # 从1开始否则会推荐自己
             relate_courses = Course.objects.filter(tag=tag)[1:2]
         else:
             relate_courses = []

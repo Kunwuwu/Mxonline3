@@ -51,5 +51,5 @@ urlpatterns = [
     path("org/", include('organization.urls', namespace="org")),
     path("users/", include('users.urls', namespace="users")),
     # 课程app的url配置
-    path("course/", include('courses.urls', namespace="course")),
+    path("courses/", include('courses.urls', namespace="course")),
 ]
