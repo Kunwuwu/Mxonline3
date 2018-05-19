@@ -115,6 +115,7 @@ class CourseInfoView(LoginRequiredMixin, View):
             "all_resources": all_resources,
             "relate_courses":relate_courses,
         })
+
 class CommentsView(LoginRequiredMixin, View):
     login_url = '/login/'
     redirect_field_name = 'next'

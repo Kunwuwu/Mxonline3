@@ -2,10 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="799ce0a5-9bcd-4264-8fd6-0bde3c9d2439" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/apps/courses/migrations/0006_course_is_banner.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Mxonline3/urls.py" afterPath="$PROJECT_DIR$/Mxonline3/urls.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/apps/courses/models.py" afterPath="$PROJECT_DIR$/apps/courses/models.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/apps/courses/urls.py" afterPath="$PROJECT_DIR$/apps/courses/urls.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/apps/courses/views.py" afterPath="$PROJECT_DIR$/apps/courses/views.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -23,7 +22,7 @@
         <entry file="file://$PROJECT_DIR$/templates/course-comment.html">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="178">
-              <caret line="7" column="19" lean-forward="true" selection-start-line="7" selection-start-column="19" selection-end-line="7" selection-end-column="19" />
+              <caret line="7" column="19" lean-forward="false" selection-start-line="7" selection-start-column="19" selection-end-line="7" selection-end-column="19" />
               <folding>
                 <element signature="n#block#1;n#!!top" expanded="false" />
                 <element signature="n#block#2;n#!!top" expanded="false" />
@@ -37,7 +36,7 @@
       <file leaf-file-name="course-video.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/templates/course-video.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="173">
+            <state relative-caret-position="77">
               <caret line="73" column="40" lean-forward="false" selection-start-line="73" selection-start-column="32" selection-end-line="73" selection-end-column="40" />
               <folding>
                 <element signature="n#block#0;n#!!top" expanded="false" />
@@ -51,8 +50,8 @@
       <file leaf-file-name="views.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/apps/courses/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2509">
-              <caret line="115" column="44" lean-forward="true" selection-start-line="115" selection-start-column="44" selection-end-line="115" selection-end-column="44" />
+            <state relative-caret-position="-3337">
+              <caret line="35" column="50" lean-forward="false" selection-start-line="35" selection-start-column="47" selection-end-line="35" selection-end-column="50" />
               <folding>
                 <element signature="e#0#30#0" expanded="true" />
               </folding>
@@ -60,10 +59,20 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="urls.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/apps/courses/urls.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="544">
+              <caret line="18" column="4" lean-forward="false" selection-start-line="18" selection-start-column="4" selection-end-line="18" selection-end-column="4" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="models.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/apps/courses/models.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="306">
+            <state relative-caret-position="242">
               <caret line="31" column="98" lean-forward="false" selection-start-line="31" selection-start-column="98" selection-end-line="31" selection-end-column="98" />
               <folding>
                 <element signature="e#0#28#0" expanded="true" />
@@ -84,7 +93,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>学习</find>
       <find>address</find>
       <find>sort</find>
       <find>授课机构</find>
@@ -114,6 +122,7 @@
       <find>banner</find>
       <find>chapters</find>
       <find>all_res</find>
+      <find>Add</find>
     </findStrings>
     <replaceStrings>
       <replace>/login/</replace>
@@ -178,18 +187,18 @@
         <option value="$PROJECT_DIR$/templates/org_base.html" />
         <option value="$PROJECT_DIR$/apps/operation/models.py" />
         <option value="$PROJECT_DIR$/apps/organization/views.py" />
-        <option value="$PROJECT_DIR$/apps/courses/urls.py" />
         <option value="$PROJECT_DIR$/templates/org-list.html" />
         <option value="$PROJECT_DIR$/templates/course-list.html" />
         <option value="$PROJECT_DIR$/apps/organization/models.py" />
         <option value="$PROJECT_DIR$/templates/base.html" />
         <option value="$PROJECT_DIR$/templates/course-detail.html" />
-        <option value="$PROJECT_DIR$/apps/courses/views.py" />
         <option value="$PROJECT_DIR$/templates/login.html" />
         <option value="$PROJECT_DIR$/apps/users/views.py" />
         <option value="$PROJECT_DIR$/Mxonline3/urls.py" />
         <option value="$PROJECT_DIR$/templates/index.html" />
         <option value="$PROJECT_DIR$/apps/courses/models.py" />
+        <option value="$PROJECT_DIR$/apps/courses/urls.py" />
+        <option value="$PROJECT_DIR$/apps/courses/views.py" />
       </list>
     </option>
   </component>
@@ -512,7 +521,14 @@
       <option name="project" value="LOCAL" />
       <updated>1526716633499</updated>
     </task>
-    <option name="localTasksCounter" value="28" />
+    <task id="LOCAL-00028" summary="8-4&amp;5完成课程章节信息，课程资源，课程老师信息。">
+      <created>1526719813426</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1526719813426</updated>
+    </task>
+    <option name="localTasksCounter" value="29" />
     <servers />
   </component>
   <component name="TodoView" selected-index="4">
@@ -608,7 +624,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="设计完成课程app中四张数据表: 课程，章节，视频，资源。对应4-6" />
     <MESSAGE value="课程机构app：城市，机构，讲师表书写完毕。对应4-7" />
     <MESSAGE value="operation下的models设计,用户: 课程&amp;消息&amp;收藏&amp;评论&amp;我要学习.并在setting中进行了注册。对应4-8" />
     <MESSAGE value="数据表全部生成，migration目录&amp;表django_migration。将app放到apps目录。对应4-9.&#10;第四章结束！撒花。" />
@@ -633,7 +648,8 @@
     <MESSAGE value="7-7&amp;8 使用modelform完成表单我要学习的异步提交" />
     <MESSAGE value="7-9&amp;10&amp;11&amp;12将机构详情展示完毕，为课程机构添加了收藏功能。修复了index未登录状态下爆炸的错误。解决了原先无法进入个人中心的bug" />
     <MESSAGE value="8-2&amp;3完成课程详情页展示，课程详情页机构，相关推荐课程。收藏课程，收藏机构。" />
-    <option name="LAST_COMMIT_MESSAGE" value="8-2&amp;3完成课程详情页展示，课程详情页机构，相关推荐课程。收藏课程，收藏机构。" />
+    <MESSAGE value="8-4&amp;5完成课程章节信息，课程资源，课程老师信息。" />
+    <option name="LAST_COMMIT_MESSAGE" value="8-4&amp;5完成课程章节信息，课程资源，课程老师信息。" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -912,16 +928,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/apps/courses/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="114">
-          <caret line="14" column="91" lean-forward="false" selection-start-line="14" selection-start-column="91" selection-end-line="14" selection-end-column="91" />
-          <folding>
-            <element signature="e#95#215#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/templates/course-detail.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="5165">
@@ -1035,7 +1041,7 @@
     <entry file="file://$PROJECT_DIR$/templates/course-comment.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="178">
-          <caret line="7" column="19" lean-forward="true" selection-start-line="7" selection-start-column="19" selection-end-line="7" selection-end-column="19" />
+          <caret line="7" column="19" lean-forward="false" selection-start-line="7" selection-start-column="19" selection-end-line="7" selection-end-column="19" />
           <folding>
             <element signature="n#block#1;n#!!top" expanded="false" />
             <element signature="n#block#2;n#!!top" expanded="false" />
@@ -1047,7 +1053,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/templates/course-video.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="173">
+        <state relative-caret-position="77">
           <caret line="73" column="40" lean-forward="false" selection-start-line="73" selection-start-column="32" selection-end-line="73" selection-end-column="40" />
           <folding>
             <element signature="n#block#0;n#!!top" expanded="false" />
@@ -1059,7 +1065,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/apps/courses/models.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
+        <state relative-caret-position="242">
           <caret line="31" column="98" lean-forward="false" selection-start-line="31" selection-start-column="98" selection-end-line="31" selection-end-column="98" />
           <folding>
             <element signature="e#0#28#0" expanded="true" />
@@ -1067,10 +1073,18 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/apps/courses/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="544">
+          <caret line="18" column="4" lean-forward="false" selection-start-line="18" selection-start-column="4" selection-end-line="18" selection-end-column="4" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/apps/courses/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2509">
-          <caret line="115" column="44" lean-forward="true" selection-start-line="115" selection-start-column="44" selection-end-line="115" selection-end-column="44" />
+        <state relative-caret-position="-3337">
+          <caret line="35" column="50" lean-forward="false" selection-start-line="35" selection-start-column="47" selection-end-line="35" selection-end-column="50" />
           <folding>
             <element signature="e#0#30#0" expanded="true" />
           </folding>
