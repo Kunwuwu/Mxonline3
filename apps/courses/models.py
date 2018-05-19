@@ -2,6 +2,7 @@ from django.db import models
 
 from datetime import datetime
 from organization.models import CourseOrg
+from organization.models import Teacher
 # Create your models here.
 
 # 课程信息表
@@ -27,15 +28,21 @@ class Course(models.Model):
         verbose_name="封面图",
         max_length=100,
     )
+    you_need_know = models.CharField(max_length=300, default=u"一颗勤学的心是本课程必要前提", verbose_name=u"课程须知")
+    teacher_tell = models.CharField(max_length=300, default=u"按时交作业,不然叫家长", verbose_name=u"老师告诉你")
+
     # 保存点击量，点击页面就算
     click_num = models.IntegerField(default=0, verbose_name="点击量")
     tag = models.CharField(max_length=15, verbose_name=u"课程标签", default=u"")
-
+    is_banner = models.BooleanField(default=False, verbose_name=u"是否轮播")
     add_time = models.DateTimeField(default=datetime.now, verbose_name='添加时间')
     category = models.CharField(max_length=100, null=True, blank=True,verbose_name="课程类别")
 
     # 添加课程对应的机构外键
     course_org = models.ForeignKey(CourseOrg, verbose_name="所属机构", on_delete=models.CASCADE, null=True, blank = True)
+
+    # 添加讲师对应的外键
+    teacher = models.ForeignKey(Teacher, null=True, blank = True, on_delete=models.CASCADE)
 
     # 获取章节数和学习的用户，可以通过被置为外键的情况来计算
     def get_zj_nums(self):
@@ -73,6 +80,11 @@ class Video(models.Model):
     lesson = models.ForeignKey(Lesson, verbose_name="章节", on_delete=models.CASCADE)
     name = models.CharField(max_length=100, verbose_name="视频名")
     add_time = models.DateTimeField(default=datetime.now, verbose_name="上传时间")
+
+    url = models.CharField(max_length=200, default="http://127.0.0.1:8000/", verbose_name="访问地址")
+
+    # 使用分钟做后台记录
+    learn_time = models.IntegerField(default=0, verbose_name="学习时长（分钟数）")
 
     def __str__(self):
         return '{0}章节的视频>>{1}'.format(self.lesson, self.name)

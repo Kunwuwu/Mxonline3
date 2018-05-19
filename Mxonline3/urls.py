@@ -18,7 +18,7 @@ from django.urls import path, include, re_path
 import xadmin
 from django.views.generic import TemplateView
 from django.views.static import serve
-from users.views import LoginView, RegisterView, ActiveUserView, ForgetPwdView, ResetView, ModifyPwdView, LogoutView
+from users.views import LoginView, RegisterView, ActiveUserView, ForgetPwdView, ResetView, ModifyPwdView, LogoutView, IndexView
 from organization.views import OrgView
 from .settings import MEDIA_ROOT
 import organization
@@ -26,7 +26,7 @@ import organization
 
 urlpatterns = [
     path('xadmin/', xadmin.site.urls),
-    path('', TemplateView.as_view(template_name="index.html"), name = "index"),
+    path('', IndexView.as_view(), name = "index"),
     # 基于类方法实现登录,这里是调用它的方法
     path('login/', LoginView.as_view(), name="login"),
     # 退出功能url
